@@ -1,0 +1,13 @@
+{
+"id": "BALLOONTRO",
+"name": "Balloontro",
+"author":["SapphireKnight","Greenkibble"],
+"description":"A Balloon SMP inspired Balatro mod",
+"prefix":"bsmp",
+"main_file":"balloontro.lua",
+"badge_color":"ff0000",
+"dependencies": [
+        "Steamodded (>=1.0.0~ALPHA-1225a)"
+    ],
+"version":"1.0.0"
+}
