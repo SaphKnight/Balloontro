@@ -9,7 +9,7 @@
 
 SMODS.Atlas{
     key = 'BSMPJokers',
-    path = 'BSMPJokers.png',
+    path = 'Jokers.png',
     px = 71,
     py = 95,
 }
@@ -497,7 +497,7 @@ SMODS.Joker { -- Sopy Joker
             'gain {C:money}$#3#{}',
         }
     },
-    config = {extra = {prob = 3,sopy_money=7}},
+    config = {extra = {prob = 3,sopy_money = 8}},
     loc_vars = function(self,info_queue,card)
         return{vars = {(G.GAME.probabilities.normal or 1),card.ability.extra.prob,card.ability.extra.sopy_money}}
     end,
@@ -619,12 +619,13 @@ SMODS.Joker { -- Yoda Joker
         name = 'Yoda',
         text = {
             'For every {C:diamonds}Diamond{} card scored,',
-            'add {C:money}$1{} of {C:attention}Sell Value{} to all {C:attention}Jokers{}'
+            '{C:green}#1# in #2#{} chance to add {C:money}$1{} of',
+            '{C:attention}Sell Value{} to all Jokers'
         }
     },
-    config = {extra = {}},
+    config = {extra = {yodaProb = 2}},
     loc_vars = function(self,info_queue,card)
-        return
+        return {vars = {(G.GAME.probabilities.normal or 1),card.ability.extra.yodaProb}}
     end,
     rarity = 2,
     atlas = 'BSMPJokers',
@@ -634,7 +635,7 @@ SMODS.Joker { -- Yoda Joker
         if context.cardarea == G.jokers and context.after then
             changemade = false
             for k,v in ipairs(G.play.cards) do
-                if v:is_suit('Diamonds',true) then
+                if v:is_suit('Diamonds',true) and (pseudorandom('yoda') < G.GAME.probabilities.normal / card.ability.extra.yodaProb) then
                     changemade = true
                     for k,v in ipairs(G.jokers.cards) do
                         if v.set_cost then
