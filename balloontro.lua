@@ -14,6 +14,11 @@ SMODS.Atlas{
     py = 95,
 }
 
+SMODS.Sound { -- Balloon Popping
+    key = 'balloonpop',
+    path = 'BALLOONTRO_balloonpop.mp3'
+}
+
 SMODS.Joker{ -- SocksBX Joker
     key = 'socksbx',
     loc_txt = {
@@ -528,10 +533,10 @@ SMODS.Joker { -- Ourwake Joker
             'Gives {X:mult,C:white}X#1#{C:attention} Mult.{}',
             'For every played hand, increase',
             'the level of played hand by 2.',
-            'Afterwards, loses {X:mult,C:white}X1{} Mult.'
+            'Afterwards, loses {X:mult,C:white}X0.5{} Mult.'
         }
     },
-    config = {extra = {ourwakeXMult=10}},
+    config = {extra = {ourwakeXMult=5}},
     loc_vars = function(self,info_queue,card)
         return {vars = {card.ability.extra.ourwakeXMult}}
     end,
@@ -552,14 +557,12 @@ SMODS.Joker { -- Ourwake Joker
             }
         end
         if context.cardarea == G.jokers and context.after then
-            card.ability.extra.ourwakeXMult = card.ability.extra.ourwakeXMult - 1
+            card.ability.extra.ourwakeXMult = card.ability.extra.ourwakeXMult - 0.5
             if card.ability.extra.ourwakeXMult <= 0 then
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        G.hand_text_area.blind_chips:juice_up()
-                        G.hand_text_area.game_chips:juice_up()
-                        play_sound('tarot1')
                         card:start_dissolve()
+                        play_sound('bsmp_balloonpop',0.7,0.5)
                         return true
                     end
                 }))
