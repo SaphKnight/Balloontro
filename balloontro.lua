@@ -36,8 +36,8 @@ SMODS.Joker{ -- SocksBX Joker
     calculate = function(self,card,context)
         if context.joker_main then
             card.ability.extra.socks_mult=0
-        for k,v in pairs (G.playing_cards) do
-            if v:is_suit('Hearts',true) then card.ability.extra.socks_mult = card.ability.extra.socks_mult+1 end
+            for k,v in pairs (G.playing_cards) do
+                if v:is_suit('Hearts',true) then card.ability.extra.socks_mult = card.ability.extra.socks_mult+1 end
         end
             return {mult_mod = card.ability.extra.socks_mult,
                     message = localize {type='variable',key='a_mult',vars={card.ability.extra.socks_mult}}
@@ -143,7 +143,7 @@ SMODS.Joker { -- Soma Joker
     end,
     rarity = 2,
     atlas = 'BSMPJokers',
-    pos = {x = 3, y = 0},
+    pos = {x = 5, y = 0},
     cost = 6,
     calculate = function(self,card,context)
         if context.setting_blind and not card.getting_sliced and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
@@ -225,7 +225,7 @@ SMODS.Joker { -- Woops Joker
     end,
     rarity = 3,
     atlas = 'BSMPJokers',
-    pos = {x = 5, y = 0},
+    pos = {x = 3, y = 0},
     cost = 8,
     calculate = function(self,card,context)
         if context.cardarea == G.jokers and context.before then
@@ -537,7 +537,7 @@ SMODS.Joker { -- Ourwake Joker
     end,
     rarity = 4,
     atlas = 'BSMPJokers',
-    pos = {x = 3, y = 8},
+    pos = {x = 4, y = 1},
     soul_pos = {x = 3, y = 9},
     cost = 20,
     calculate = function(self,card,context)
@@ -593,7 +593,7 @@ SMODS.Joker { -- Moth Joker
     end,
     rarity = 3,
     atlas = 'BSMPJokers',
-    pos = {x = 4, y = 1},
+    pos = {x = 5, y = 1},
     cost = 10,
     calculate = function(self,card,context)
         if context.ending_shop then
@@ -629,7 +629,7 @@ SMODS.Joker { -- Yoda Joker
     end,
     rarity = 2,
     atlas = 'BSMPJokers',
-    pos = {x = 4, y = 1},
+    pos = {x = 6, y = 1},
     cost = 8,
     calculate = function(self,card,context)
         if context.cardarea == G.jokers and context.after then
